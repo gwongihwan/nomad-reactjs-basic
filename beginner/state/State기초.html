@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById('root');
+        function App() {
+            const [counter, setCounter] = React.useState(0);
+            const onClick = () => {
+                // setCounter(counter + 1); // state의 값을 보장할 수 없음.
+                setCounter((current) => current + 1); // 인자로 함수를 전달하여
+                                                      // 해당 함수의 첫번째 인자(현재state 보장)를 이용하는 것이 더 좋은 방식
+
+            };
+            return (
+                <div>
+                    <h3>Total clicks: {counter}</h3>
+                    <button onClick={onClick}>Click me</button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, root);
+    </script>
+</html>
